@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Interface with Embedded Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+        }
+        p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 15px 25px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* Modal (Popup) Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 10% auto;
+            padding: 20px;
+            background-color: white;
+            width: 80%;
+            max-width: 900px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #aaa;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Fancy Interface!</h1>
+        <p>Click the button below to open Coursera in a fancy popup.</p>
+        <button class="button" onclick="openPopup()">Open</button>
+    </div>
+
+    <!-- The Modal (Popup) -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <iframe src="" id="iframe" style="display:none;"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Function to open the popup
+        function openPopup() {
+            var modal = document.getElementById("myModal");
+            var iframe = document.getElementById("iframe");
+            iframe.src = "https://coursera.gq";
+            iframe.style.display = "block";  // Show the iframe
+
+            // Show the modal with fade-in effect
+            modal.style.display = "block";
+            setTimeout(function() {
+                modal.style.opacity = 1;
+            }, 10); // Delay to allow the modal to become visible
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            var modal = document.getElementById("myModal");
+            var iframe = document.getElementById("iframe");
+
+            // Hide the modal with fade-out effect
+            modal.style.opacity = 0;
+            setTimeout(function() {
+                modal.style.display = "none";
+                iframe.src = ""; // Stop the iframe content when modal closes
+                iframe.style.display = "none"; // Hide the iframe
+            }, 300); // Wait for the fade-out effect before hiding it
+        }
+    </script>
+</body>
+</html>
